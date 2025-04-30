@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Betting Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ludo Betting</h1>
+            <div id="user-info">
+                <span id="balance">Balance: BDT 0.00</span>
+                <div id="auth-buttons">
+                    <button id="login-btn">Login</button>
+                    <button id="signup-btn">Sign Up</button>
+                </div>
+                <div id="user-profile" style="display: none;">
+                    <span id="username">Username</span>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" data-page="ludo"><i class="fas fa-dice"></i> Ludo</a></li>
+                <li><a href="#" data-page="deposit"><i class="fas fa-wallet"></i> Deposit</a></li>
+                <li><a href="#" data-page="withdraw"><i class="fas fa-money-bill-wave"></i> Withdraw</a></li>
+                <li><a href="#" data-page="history"><i class="fas fa-history"></i> History</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Home Page -->
+            <section id="home" class="page active">
+                <div class="welcome-banner">
+                    <h2>Welcome to Ludo Betting!</h2>
+                    <p>Play Ludo and win real money. Double your bet when you win!</p>
+                    <button class="cta-button" id="play-now-btn">Play Now</button>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-dice fa-3x"></i>
+                        <h3>Play Ludo</h3>
+                        <p>Bet any amount and win double if you win the game.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-wallet fa-3x"></i>
+                        <h3>Easy Deposits</h3>
+                        <p>Deposit money easily using Bkash.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-money-bill-wave fa-3x"></i>
+                        <h3>Quick Withdrawals</h3>
+                        <p>Withdraw your winnings with just a 5% fee.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ludo Game Page -->
+            <section id="ludo" class="page">
+                <h2>Ludo Game</h2>
+                <div class="game-container">
+                    <div class="game-board">
+                        <!-- Simplified Ludo board representation -->
+                        <div class="ludo-board">
+                            <!-- Board is now displayed as background image -->
+                        </div>
+                    </div>
+                    <div class="game-controls">
+                        <div class="bet-controls">
+                            <h3>Place Your Bet</h3>
+                            <div class="bet-amount">
+                                <label for="bet-input">Bet Amount:</label>
+                                <input type="number" id="bet-input" min="1" value="10">
+                            </div>
+                            <button id="place-bet-btn" class="primary-btn">Place Bet</button>
+                        </div>
+                        <div class="game-actions">
+                            <button id="roll-dice-btn" class="action-btn" disabled>Roll Dice</button>
+                            <div class="dice-result">
+                                <span id="dice-value">0</span>
+                            </div>
+                            <div class="dice-faces">
+                                <div class="dice-face" data-value="1">
+                                    <span class="dot center"></span>
+                                </div>
+                                <div class="dice-face" data-value="2">
+                                    <span class="dot top-left"></span>
+                                    <span class="dot bottom-right"></span>
+                                </div>
+                                <div class="dice-face" data-value="3">
+                                    <span class="dot top-left"></span>
+                                    <span class="dot center"></span>
+                                    <span class="dot bottom-right"></span>
+                                </div>
+                                <div class="dice-face" data-value="4">
+                                    <span class="dot top-left"></span>
+                                    <span class="dot top-right"></span>
+                                    <span class="dot bottom-left"></span>
+                                    <span class="dot bottom-right"></span>
+                                </div>
+                                <div class="dice-face" data-value="5">
+                                    <span class="dot top-left"></span>
+                                    <span class="dot top-right"></span>
+                                    <span class="dot center"></span>
+                                    <span class="dot bottom-left"></span>
+                                    <span class="dot bottom-right"></span>
+                                </div>
+                                <div class="dice-face" data-value="6">
+                                    <span class="dot top-left"></span>
+                                    <span class="dot top-right"></span>
+                                    <span class="dot middle-left"></span>
+                                    <span class="dot middle-right"></span>
+                                    <span class="dot bottom-left"></span>
+                                    <span class="dot bottom-right"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-status">
+                            <p id="game-message">Place a bet to start the game</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deposit Page -->
+            <section id="deposit" class="page">
+                <h2>Deposit Money</h2>
+                <div class="deposit-container">
+                    <div class="payment-info">
+                        <h3>Bkash Payment Information</h3>
+                        <div class="payment-details">
+                            <p class="text-danger"><strong>Bkash Personal:</strong> 01864545196 (Send Money only)</p>
+                            <p>Please send the exact amount you want to deposit to the above number.</p>
+                            <p><strong>Minimum Deposit:</strong> 500 Taka</p>
+                        </div>
+                    </div>
+                    <div class="deposit-form">
+                        <h3>Confirm Your Deposit</h3>
+                        <form id="deposit-form">
+                            <div class="form-group">
+                                <label for="deposit-amount">Amount:</label>
+                                <input type="number" id="deposit-amount" required min="500" placeholder="Minimum 500 Taka">
+                            </div>
+                            <div class="form-group">
+                                <label for="transaction-id">Transaction ID:</label>
+                                <input type="text" id="transaction-id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-number">Sender's Bkash Number:</label>
+                                <input type="text" id="sender-number" required>
+                            </div>
+                            <button type="submit" class="primary-btn">Confirm Deposit</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Withdraw Page -->
+            <section id="withdraw" class="page">
+                <h2>Withdraw Money</h2>
+                <div class="withdraw-container">
+                    <div class="withdraw-info">
+                        <h3>Withdrawal Information</h3>
+                        <p>A 5% fee will be deducted from your withdrawal amount.</p>
+                        <div class="balance-info">
+                            <p><strong>Available Balance:</strong> <span id="available-balance">BDT 0.00</span></p>
+                        </div>
+                    </div>
+                    <div class="withdraw-form">
+                        <h3>Request Withdrawal</h3>
+                        <form id="withdraw-form">
+                            <div class="form-group">
+                                <label for="withdraw-amount">Amount:</label>
+                                <input type="number" id="withdraw-amount" required min="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="bkash-number">Your Bkash Number:</label>
+                                <input type="text" id="bkash-number" required>
+                            </div>
+                            <div class="fee-calculation">
+                                <p>Withdrawal Amount: <span id="withdraw-request-amount">BDT 0.00</span></p>
+                                <p>Fee (5%): <span id="withdraw-fee">BDT 0.00</span></p>
+                                <p>You Will Receive: <span id="withdraw-final-amount">BDT 0.00</span></p>
+                            </div>
+                            <button type="submit" class="primary-btn">Request Withdrawal</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Page -->
+            <section id="history" class="page">
+                <h2>Transaction History</h2>
+                <div class="history-container">
+                    <div class="history-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="deposit">Deposits</button>
+                        <button class="filter-btn" data-filter="withdraw">Withdrawals</button>
+                        <button class="filter-btn" data-filter="bet">Bets</button>
+                    </div>
+                    <div class="history-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-data">
+                                <!-- Sample history data, will be populated by JavaScript -->
+                                <tr class="no-records">
+                                    <td colspan="5">No transaction records found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="primary-btn">Login</button>
+            </form>
+            <p class="form-switch">Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password:</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+                <button type="submit" class="primary-btn">Sign Up</button>
+            </form>
+            <p class="form-switch">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Ludo Betting. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

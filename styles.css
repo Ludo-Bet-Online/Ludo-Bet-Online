@@ -1,0 +1,608 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #4834d4;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+#user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#balance {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2ecc71;
+    margin-bottom: 10px;
+}
+
+#auth-buttons button, #user-profile button {
+    background-color: #4834d4;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+#auth-buttons button:hover, #user-profile button:hover {
+    background-color: #3621a5;
+}
+
+#logout-btn {
+    background-color: #e74c3c;
+}
+
+#logout-btn:hover {
+    background-color: #c0392b;
+}
+
+#username {
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+nav ul li a i {
+    margin-right: 8px;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: #4834d4;
+    background-color: #f8f9fa;
+}
+
+nav ul li a.active {
+    border-bottom: 3px solid #4834d4;
+}
+
+/* Main Content Styles */
+main {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-height: 600px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Home Page Styles */
+.welcome-banner {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.welcome-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.welcome-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.cta-button {
+    background-color: #ff9f43;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #f39c12;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-card {
+    flex: 1;
+    min-width: 250px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    color: #4834d4;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Ludo Game Styles */
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Dice Faces Styles */
+.dice-faces {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    display: none; /* Initially hidden, will be shown via JS */
+}
+
+.dice-face {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.dice-face.active {
+    display: block;
+}
+
+.dice-face.highlight {
+    background-color: #f39c12;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+}
+
+.dice-face.highlight .dot {
+    background-color: white;
+}
+
+.dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: #333;
+    border-radius: 50%;
+}
+
+.dot.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dot.top-left {
+    top: 20%;
+    left: 20%;
+}
+
+.dot.top-right {
+    top: 20%;
+    right: 20%;
+}
+
+.dot.middle-left {
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+}
+
+.dot.middle-right {
+    top: 50%;
+    right: 20%;
+    transform: translateY(-50%);
+}
+
+.dot.bottom-left {
+    bottom: 20%;
+    left: 20%;
+}
+
+.dot.bottom-right {
+    bottom: 20%;
+    right: 20%;
+}
+
+.game-board {
+    flex: 2;
+    min-width: 300px;
+}
+
+.ludo-board {
+    width: 100%;
+    padding-bottom: 100%; /* Square aspect ratio */
+    position: relative;
+    background-image: url('ludo-board-image.svg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Board grid and home elements removed as they're no longer needed */
+
+.green-home {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.yellow-home {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.game-controls {
+    flex: 1;
+    min-width: 250px;
+}
+
+.bet-controls, .game-actions, .game-status {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.bet-amount {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.bet-amount label {
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.bet-amount input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100px;
+}
+
+.primary-btn, .action-btn {
+    background-color: #4834d4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background-color: #3621a5;
+}
+
+.action-btn {
+    background-color: #2ecc71;
+    margin-bottom: 10px;
+}
+
+.action-btn:hover {
+    background-color: #27ae60;
+}
+
+.action-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.dice-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.dice-result.highlight {
+    background-color: #f39c12;
+    border-color: #e67e22;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+}
+
+#game-message {
+    text-align: center;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Deposit Page Styles */
+.deposit-container, .withdraw-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.payment-info, .withdraw-info {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.payment-details {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    border-left: 4px solid #4834d4;
+}
+
+.deposit-form, .withdraw-form {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.fee-calculation {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.fee-calculation p {
+    margin-bottom: 5px;
+}
+
+/* History Page Styles */
+.history-filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: #4834d4;
+    color: white;
+    border-color: #4834d4;
+}
+
+.history-table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.no-records td {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.form-switch {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-switch a {
+    color: #4834d4;
+    text-decoration: none;
+}
+
+/* Text Color Utilities */
+.text-danger {
+    color: #e74c3c;
+}
+
+.text-success {
+    color: #2ecc71;
+}
+
+.text-warning {
+    color: #f39c12;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #user-info {
+        margin-top: 15px;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 12px 0;
+    }
+
+    .features, .game-container, .deposit-container, .withdraw-container {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        margin: 20% auto;
+        width: 95%;
+    }
+}
